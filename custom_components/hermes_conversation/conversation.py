@@ -40,6 +40,7 @@ class HermesConversationEntity(
 
     _attr_attribution = "Hermes Agent"
     _attr_name = "Hermes"
+    _attr_supported_features = conversation.ConversationEntityFeature.CONTROL
 
     def __init__(
         self, coordinator: HermesConversationCoordinator, entry: ConfigEntry
@@ -50,9 +51,9 @@ class HermesConversationEntity(
         self._attr_unique_id = entry.entry_id
 
     @property
-    def supported_languages(self) -> list[str]:
+    def supported_languages(self) -> str:
         """Return supported languages."""
-        return ["*"]
+        return "*"
 
     async def async_process(
         self, user_input: conversation.ConversationInput
@@ -60,9 +61,9 @@ class HermesConversationEntity(
         """Process a user request via the Hermes bridge."""
         conversation_id = user_input.conversation_id or ulid.ulid_now()
 
-        user_name = user_input.context.user_name
-        user_id = user_input.context.user_id
-        device_id = user_input.device_id
+        user_name = getattr(user_input.context, "user_name", None)
+        user_id = getattr(user_input.context, "user_id", None)
+        device_id = getattr(user_input, "device_id", None)
         language = user_input.language or "en"
 
         try:

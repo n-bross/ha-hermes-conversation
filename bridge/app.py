@@ -9,16 +9,16 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from auth import verify_token
-from config import BridgeConfig
-from models import (
+from bridge.auth import verify_token
+from bridge.config import BridgeConfig
+from bridge.models import (
     ConversationRequest,
     ConversationResponse,
     HealthResponse,
     InfoResponse,
 )
-from router import Router
-from session_store import SessionStore
+from bridge.router import Router
+from bridge.session_store import SessionStore
 
 _LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
