@@ -1,0 +1,14 @@
+[Unit]
+Description=Hermes Home Assistant bridge
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/ha-hermes-conversation/bridge
+EnvironmentFile=%h/.config/hermes-bridge.env
+ExecStart=%h/ha-hermes-conversation/bridge/.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8787
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

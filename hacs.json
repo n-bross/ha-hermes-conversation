@@ -1,0 +1,8 @@
+{
+  "name": "Hermes Conversation",
+  "content_in_root": false,
+  "filename": "hermes_conversation",
+  "country": "DE",
+  "homeassistant": "2024.1.0",
+  "render_readme": true
+}

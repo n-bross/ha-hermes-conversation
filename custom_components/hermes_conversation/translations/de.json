@@ -1,0 +1,26 @@
+{
+  "title": "Hermes Conversation",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mit Hermes-Bridge verbinden",
+        "data": {
+          "bridge_url": "Bridge-URL",
+          "bridge_token": "Bridge-Bearer-Token",
+          "hermes_profile": "Hermes-Profilname",
+          "timeout": "Anfrage-Timeout (Sekunden)",
+          "routing_mode": "Routing-Modus (MVP nur: hermes_only)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Keine Verbindung zur Bridge.",
+      "invalid_auth": "Ungültiges Bridge-Token.",
+      "timeout": "Zeitüberschreitung bei der Bridge-Verbindung.",
+      "unknown": "Unerwarteter Fehler."
+    },
+    "abort": {
+      "already_configured": "Bridge ist bereits konfiguriert."
+    }
+  }
+}
