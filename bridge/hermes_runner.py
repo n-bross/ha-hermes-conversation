@@ -42,11 +42,17 @@ class HermesRunner:
         self,
         hermes_bin: str = "hermes",
         profile: str = "default",
+        provider: str | None = None,
+        model: str | None = None,
+        toolsets: str | None = None,
         timeout: float = 30.0,
     ) -> None:
         """Initialize runner."""
         self.hermes_bin = hermes_bin
         self.profile = profile
+        self.provider = provider
+        self.model = model
+        self.toolsets = toolsets
         self.timeout = timeout
 
     def _build_args(
@@ -61,6 +67,12 @@ class HermesRunner:
             "--usage-file",
             str(usage_file),
         ]
+        if self.provider:
+            args.extend(["--provider", self.provider])
+        if self.model:
+            args.extend(["-m", self.model])
+        if self.toolsets:
+            args.extend(["-t", self.toolsets])
         if resume_session_id:
             args.insert(1, "--resume")
             args.insert(2, resume_session_id)

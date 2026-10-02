@@ -13,7 +13,7 @@ DEFAULT_HERMES_PROFILE = "default"
 DEFAULT_TIMEOUT = 30
 DEFAULT_ROUTING_MODE = "hermes_only"
 
-ROUTING_MODES = ["hermes_only", "local_first", "classifier"]
+ROUTING_MODES = ["hermes_only", "local_first", "cascade", "classifier"]
 
 BRIDGE_CONVERSATION_PATH = "/api/conversation"
 HEALTH_PATH = "/health"

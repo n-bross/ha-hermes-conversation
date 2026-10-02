@@ -16,3 +16,6 @@ htmlcov/
 .tox/
 build/
 dist/
+
+bridge/.env*
+data/
