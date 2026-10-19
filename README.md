@@ -54,7 +54,7 @@ Copy `examples/bridge.env.example` to a real env file and source it before start
 ### 2. Install the HA integration via HACS
 
 1. Open HACS → Custom repositories.
-2. Add `https://github.com/nbross/ha-hermes-conversation` as an **Integration**.
+2. Add `https://github.com/n-bross/ha-hermes-conversation` as an **Integration**.
 3. Download it.
 4. Restart Home Assistant.
 5. Add the integration in **Settings → Devices & services → Add integration → Hermes Conversation**.

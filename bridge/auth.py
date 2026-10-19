@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import os
+import secrets
 from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
@@ -17,7 +18,7 @@ bearer_scheme = HTTPBearer(auto_error=False)
 async def verify_token(
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
 ) -> str:
-    """Verify the bearer token matches the configured bridge token."""
+    """Verify the bearer token matches the configured bridge token in constant time."""
     token = os.environ.get("HERMES_BRIDGE_TOKEN", "")
     if not token:
         _LOGGER.error("HERMES_BRIDGE_TOKEN is not set")
@@ -26,7 +27,10 @@ async def verify_token(
             detail="Bridge token not configured",
         )
 
-    if credentials is None or credentials.credentials != token:
+    if credentials is None or not secrets.compare_digest(
+        credentials.credentials.encode("utf-8"),
+        token.encode("utf-8"),
+    ):
         _LOGGER.warning("Invalid or missing bearer token")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
